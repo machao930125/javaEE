@@ -1,5 +1,7 @@
 package com.chao.list;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,7 +12,7 @@ import java.util.Comparator;
 public class CollectionSortInt {
     public static void main(String[] args) {
         //对int类型的集合进行排序
-        //soutInt();
+        soutInt();
         //对对象类型集合进行排序
         soutStudent();
     }
@@ -30,19 +32,16 @@ public class CollectionSortInt {
         System.out.println(students);
         Collections.sort(students, new Comparator<Student>() {
             public int compare(Student o1, Student o2) {
-                if (o1.getAge()>o2.getAge()){
-                    return 1;
-                }else if(o1.getAge()==o2.getAge()){
-                    return 0;
-                }else{
-                    return -1;
-                }
+                return o1.getAge().compareTo(o2.getAge());
             }
         });
         System.out.println(students);
 
     }
 
+    /**
+     * 验证
+     */
     public static void soutInt(){
         ArrayList list = new ArrayList();
         list.add(1);

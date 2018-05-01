@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
+ *
  * Created by Administrator on 2018/4/14.
  */
 public class StreamDemo {
@@ -55,7 +56,8 @@ public class StreamDemo {
         System.out.println("---------------------集合去重------------------------");
         long count1 = list.stream().distinct().count();
         System.out.println(count1);
-        Stream.of(new User("u" ,21),new User("u",21));
+        Stream<User> userStream = Stream.of(new User("u", 21), new User("u", 21));
+        System.out.println(userStream.distinct().count());
 
 
     }

@@ -5,10 +5,10 @@ package com.chao.list;
  */
 public class Student {
 
-    private int age;
+    private Integer age;
     private String name;
 
-    public Student(int age, String name) {
+    public Student(Integer age, String name) {
         this.age = age;
         this.name = name;
     }
@@ -21,11 +21,11 @@ public class Student {
                 '}';
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
