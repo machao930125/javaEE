@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2018/4/22.
  */
-public class DubbleSort {
+public class BubbleSort {
     public static  void dubbleSort(int[] obj){
         for (int i = 0; i < obj.length; i++) {
             for (int j = 0; j < obj.length-1; j++) {
