@@ -19,7 +19,7 @@
     </build>
     <packaging>jar</packaging>
 
-  <name>javaEE</name>
+  <name>javaEE567</name>
   <url>http://maven.apache.org</url>
 
   <properties>
