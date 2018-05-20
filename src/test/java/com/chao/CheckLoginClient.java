@@ -76,10 +76,11 @@ public class CheckLoginClient {
 	public static void main(String[] args) {
 		try {
 			//Map sent = sent("shxmjl01", "af8a6dee935e28a67532f57e6571a978");
-			Map sent = sent("shxmjl01", "af8a6dee935e28a67532f57e6571a978");
+			Map sent = sent("zhangxf_wh", "af8a6dee935e28a67532f57e6571a978");
 			Map map = (Map) sent.get("entityMap");
 			String name = (String) map.get("ORG_NAME");
-			System.out.println(name);
+			String token = (String) map.get("SERVICE_TICKET_KEY");
+			System.out.println(token);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
