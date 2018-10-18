@@ -1,4 +1,4 @@
-package com.chao.dataStructure.tree;
+package com.chao.datastructure.tree;
 
 /**
  * Created by machao on 2018/4/19.
