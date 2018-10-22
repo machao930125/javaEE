@@ -41,22 +41,14 @@ public class LinkedTest {
 		LinkedNode head = initSingleLinked();
 
 		// 打印反转前的链表
-		LinkedNode h = head;
-		while (null != h) {
-			System.out.print(h.getData() + " ");
-			h = h.getNext();
-		}
+		head.display();
 		// 调用反转方法
-
 //        head = reverse2(head);
-
-		LinkedNode.deleteNode(head,5);
+//		LinkedNode.deleteNode(head,5);
+		head.deleteNodeByIndex(1);
 		System.out.println("\n**************************");
 		// 打印反转后的结果
-		while (null != head) {
-			System.out.print(head.getData() + " ");
-			head = head.getNext();
-		}
+		head.display();
 	}
 
 	/**
