@@ -139,18 +139,14 @@ public class LinkedNode<T> {
 	 * @param num
 	 */
 	public static void deleteNode(LinkedNode head, int num){
-		LinkedNode h = head;
 		LinkedNode temp ;
-		int count = 0;
-		while (h != null){
-			count ++;
-			h = h.getNext();
-		}
+		int count = head.count();
+
 		int del = count -num -1 ;
 
 		if (del < 0){
 			temp = head.getNext();
-			head.setNext(null);
+			head = null;
 			head = temp;
 			return;
 		}
@@ -163,8 +159,52 @@ public class LinkedNode<T> {
 			head = head.getNext();
 			del --;
 		}
-
 	}
 
+	public void deleteNodeByIndex(int index) {
+		if (index < 1 || index > count()) {
+			System.out.println("删除位置不合法");
+		}
+		LinkedNode temp = this;
+		int length = 1;
+		while (temp.getNext() != null) {
+			if (index == length) {
+				LinkedNode next = temp.getNext();
+				next = temp.getNext().getNext();
+				return;
+			} else {
+				temp = temp.getNext();
+			}
+			length++;
+		}
+	}
 
+	/**
+	 * 输出打印链表
+	 */
+	public void display(){
+		if (this == null){
+			System.out.println("empty");
+		}
+		LinkedNode cur = this;
+		while (cur != null){
+			System.out.println(cur.getData());
+			cur = cur.getNext();
+		}
+	}
+
+	/**
+	 * 返回单链表的长度
+	 *
+	 * @return
+	 */
+	public int count(){
+		int count = 0;
+		LinkedNode cur = this;
+		while (cur != null){
+			count ++;
+			cur = cur.getNext();
+		}
+		return count;
+	}
 }
