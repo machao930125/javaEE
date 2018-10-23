@@ -1,8 +1,5 @@
 package com.chao.datastructure.linked;
 
-import com.chao.ThreadPool.Test;
-import com.sun.scenario.effect.impl.state.LinearConvolveKernel;
-
 /**
  * Created by Admin on 2018/10/11.
  *
