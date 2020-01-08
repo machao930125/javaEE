@@ -49,6 +49,30 @@ public class LinkedNode<T> {
     }
 
     /**
+     * 递归，在反转当前节点之前先反转后续节点
+     *
+     * @param head
+     * @return
+     */
+    public static LinkedNode reverse3(LinkedNode head) {
+        // head看作是前一结点，head.getNext()是当前结点，reHead是反转后新链表的头结点
+        if (head == null || head.getNext() == null) {
+            // 若为空链或者当前结点在尾结点，则直接还回
+            return head;
+        }
+        // 先反转后续节点head.getNext()
+        LinkedNode next = head.getNext();
+        LinkedNode reHead = reverse3(next.getNext());
+        // 将当前结点的指针域指向前一结点
+        head.getNext().setNext(reHead);
+        next.getNext().setNext(head);
+        // 前一结点的指针域令为null;
+//        head.setNext(null);
+        // 反转后新链表的头结点
+        return next;
+    }
+
+    /**
      * 遍历，将当前节点的下一个节点缓存后更改当前节点指针
      *
      * @param head 链表头结点

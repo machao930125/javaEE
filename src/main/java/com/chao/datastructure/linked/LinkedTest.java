@@ -40,9 +40,10 @@ public class LinkedTest {
 		// 打印反转前的链表
 		head.display();
 		// 调用反转方法
-//        head = reverse2(head);
+		head = LinkedNode.reverse3(head);
+//        head = LinkedNode.reverse1(head);
 //		LinkedNode.deleteNode(head,5);
-		head.deleteNodeByIndex(1);
+//		head.deleteNodeByIndex(1);
 		System.out.println("\n**************************");
 		// 打印反转后的结果
 		head.display();

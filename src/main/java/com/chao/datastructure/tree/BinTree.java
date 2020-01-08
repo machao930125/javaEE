@@ -86,8 +86,8 @@ public class BinTree {
 	public static void postOrder(BinTree parent) {
 		if (parent == null) return;
 
-		inOrder(parent.left);
-		inOrder(parent.right);
+		postOrder(parent.left);
+		postOrder(parent.right);
 		System.out.print(parent.data + ",");
 	}
 
