@@ -1,5 +1,7 @@
 package com.chao.datastructure;
 
+import java.util.Arrays;
+
 /**
  * 堆排序
  *
@@ -97,15 +99,10 @@ public class HeapSort {
             int[] array = {16, 7, 3, 20, 17, 8, 10, 9};
             // 测试topN
             topN(array, 5);
-            for (int i : array) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
+            System.out.println(Arrays.toString(array));
             // 测试堆排序
             heapSort(array);
-            for (int i : array) {
-                System.out.print(i + " ");
-            }
+            System.out.println(Arrays.toString(array));
         }
     }
 
