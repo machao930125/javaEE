@@ -1,4 +1,4 @@
-package com.chao.sort;
+package com.chao.datastructure;
 
 /**
  *
