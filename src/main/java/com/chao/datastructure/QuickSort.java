@@ -44,8 +44,31 @@ public class QuickSort {
     public static class Test {
         public static void main(String[] args) {
             int[] array = {16, 7, 3, 20, 17, 8, 10, 9};
-            quickSort(array, 0, array.length - 1);
+            sort(array, 0, array.length - 1);
             System.out.println(Arrays.toString(array));
         }
+    }
+
+    public static void sort(int[] arr, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int left = start;
+        int right = end;
+        int mid = arr[left];
+        while (left < right) {
+            if (left < right && mid <= arr[right]) {
+                right--;
+            }
+            arr[left] = arr[right];
+            if (left < right && mid > arr[left]) {
+                left++;
+            }
+            arr[right] = arr[left];
+
+        }
+        arr[left] = mid;
+        sort(arr, left + 1, right);
+        sort(arr, 0, left - 1);
     }
 }

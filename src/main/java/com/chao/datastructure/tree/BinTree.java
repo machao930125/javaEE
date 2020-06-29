@@ -102,19 +102,13 @@ public class BinTree {
         rear = 1;
 
         while (front < rear) {
-            try {
-                if (elements[front].data != null) {
-                    System.out.println(elements[front].data + "");
-                    if (elements[front].left != null)
-                        elements[rear++] = elements[front].left;
-                    if (elements[front].right != null)
-                        elements[rear++] = elements[front].right;
-                    front++;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                break;
+            if (elements[front].data != null) {
+                System.out.println(elements[front].data + "");
+                if (elements[front].left != null)
+                    elements[rear++] = elements[front].left;
+                if (elements[front].right != null)
+                    elements[rear++] = elements[front].right;
+                front++;
             }
         }
     }

@@ -1,27 +1,9 @@
 package com.chao.datastructure.linked;
 
-import java.util.HashMap;
-
 public class NodeTest {
 
-//    public Node reverseGroup(Node head, int group) {
-//        Stack<Node> stack = new ArrayStack<>();
-//        Node cur = head;
-//        while (cur != null) {
-//            if (stack.count() < group) {
-//                stack.push(cur);
-//                cur = cur.next;
-//            } else {
-//                while (!stack.isEmpty()) {
-//                    Node pop = stack.pop();
-//                }
-//            }
-//        }
-//    }
-
-
     public Node mergeLink(Node head1, Node head2) {
-        Node first = new Node();
+        Node first = new Node(1);
 
         Node cur = first;
 
@@ -40,48 +22,104 @@ public class NodeTest {
         return first.next;
     }
 
-    // 遍历解法
-// 同时不断遍历两个链表，取出小的追加到新的头节点后，直至两者其中一个为空
-// 再将另一者追加的新链表最后
-    public Node mergeTwoLists(Node l1, Node l2) {
 
-        Node dummy = new Node();
 
-        Node curNode = dummy;
+    public boolean findCircle(Node head) {
+        Node fastPoint = head;
+        Node slowPoint = head;
+        while (fastPoint != null && fastPoint.next != null) {
+            slowPoint = slowPoint.next;
+            fastPoint = fastPoint.next.next;
 
-        while (l1 != null && l2 != null) {
-            if (l1.value <= l2.value) {
-                curNode.next = l1;
-                l1 = l1.next;
-            } else {
-                curNode.next = l2;
-                l2 = l2.next;
+            if (slowPoint == fastPoint) {
+                return true;
             }
-            curNode = curNode.next;
         }
-
-        curNode.next = (l1 != null) ? l1 : l2;
-
-        return dummy.next;
+        return false;
     }
 
-    // 递归解法
-    // 递归的核心方法是将问题规模不断缩小化
-    // 合并两个长度为n和m的链表，在value(n) < value(m)可以将规模缩减为合并长度为(n-1)和m的链表
-    public Node mergeTwoLists2(Node l1, Node l2) {
-        if (l1 == null) return l2;
-        if (l2 == null) return l1;
-        if (l1.value < l2.value) {
-            l1.next = mergeTwoLists2(l1.next, l2);
-            return l1;
-        } else {
-            l2.next = mergeTwoLists2(l1, l2.next);
-            return l2;
+    public boolean delNode(Node head, int num) {
+        int point = 1;
+        Node pre = head;
+        Node cur = head.next;
+        while (cur != null && point <= num) {
+            if (point == num) {
+                pre.next = (cur.next);
+                cur.next = (null);
+                return true;
+            } else {
+                pre = pre.next;
+                cur = cur.next;
+                point++;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 打印链表
+     *
+     * @param head
+     */
+    public static void print(Node head) {
+        while (head != null) {
+            System.out.println(head.value);
+            head = head.next;
         }
     }
 
+    /**
+     * 初始化单链表
+     *
+     * @return
+     */
+    public static Node initSingleLink() {
+        Node head1 = new Node(1);
+        Node head2 = new Node(2);
+        Node head3 = new Node(3);
+        Node head4 = new Node(4);
+        Node head5 = new Node(5);
+        Node head6 = new Node(6);
+        Node head7 = new Node(7);
 
-    public Node reverseKGroup(Node head, int k) {
+        head1.next = head2;
+        head2.next = head3;
+        head3.next = head4;
+        head4.next = head5;
+        head5.next = head6;
+        head6.next = head7;
+
+        return head1;
+    }
+
+
+    public static void main(String[] args) {
+        Node node = initSingleLink();
+//        Node node1 = initSingleLink();
+//        print(node);
+//        Node reverse = reverse(node);
+//        print(reverse);
+//        Node mid = findMid(reverse);
+//        System.out.println(mid.value);
+//        Node node1 = delNodeByVal(reverse, 1);
+//        print(node1);
+//        mid = findMid(node1);
+//        System.out.println(mid.value);
+//        Node node2 = mergeLink2(node, node1);
+//        print(node2);
+
+        Node node2 = reverseKGroup(node, 2);
+        print(node2);
+    }
+
+    /**
+     * K个一组翻转链表
+     *
+     * @param head
+     * @param k
+     * @return
+     */
+    public static Node reverseKGroup(Node head, int k) {
         if (head == null) return null;
         Node cur = head;
         int i = k;
@@ -108,79 +146,88 @@ public class NodeTest {
     }
 
 
-    public Node reverse(Node head) {
-        if (null == head || head.next == null) {
-            return head;
+    /**
+     * 翻转单链表
+     *
+     * @param head
+     * @return
+     */
+    public static Node reverse(Node head) {
+        Node pre = null;
+        Node temp = null;
+        while (head != null) {
+            temp = head.next;
+            head.next = pre;
+            pre = head;
+            head = temp;
         }
-        Node pre = head;
-        Node cur = head.next;
-        Node temp;
-        while (cur != null) {
-            temp = cur.next;
-            cur.setNext(pre);
-            pre = cur;
-            cur = temp;
-        }
-        head.setNext(null);
         return pre;
     }
 
-    public boolean findCircle(Node head) {
-        Node fastPoint = head;
-        Node slowPoint = head;
-        while (fastPoint != null && fastPoint.next != null) {
-            slowPoint = slowPoint.next;
-            fastPoint = fastPoint.next.next;
-
-            if (slowPoint == fastPoint) {
-                return true;
-            }
+    /**
+     * 删除指定大小的Node节点
+     *
+     * @param head
+     * @param num
+     * @return
+     */
+    public static Node delNodeByVal(Node head, int num) {
+        while (head != null && head.value == num) {
+            head = head.next;
         }
-        return false;
-    }
-
-    public boolean delNode(Node head, int num) {
-        int point = 1;
-        Node pre = head;
+        Node first = head;
         Node cur = head.next;
-        while (cur != null && point <= num) {
-            if (point == num) {
-                pre.setNext(cur.next);
-                cur.setNext(null);
-                return true;
-            } else {
+        Node pre = head;
+        while (cur != null) {
+            if (cur.value == num) {
+                Node temp = cur.next;
+                cur.next = null;
+                pre.next = temp;
+                cur = temp;
                 pre = pre.next;
+            } else {
+                pre = cur;
                 cur = cur.next;
-                point++;
             }
         }
-        return false;
+        return first;
     }
 
-    class Node {
-        public int value;
-        public Node next;
+    /**
+     * 查找链表中间节点
+     *
+     * @param head
+     * @return
+     */
+    public static Node findMid(Node head) {
+        Node fastNode = head;
+        Node slowNode = head;
 
-        public int getValue() {
-            return value;
+        while (fastNode != null && fastNode.next != null) {
+            fastNode = fastNode.next.next;
+            slowNode = slowNode.next;
         }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        public Node getNext() {
-            return next;
-        }
-
-        public void setNext(Node next) {
-            this.next = next;
-        }
+        return slowNode;
     }
 
-    public static void main(String[] args) {
-        HashMap<Object, Object> map = new HashMap<>();
-        System.out.println(map.isEmpty());
+    /**
+     * 合并两个链表
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public static Node mergeLink2(Node l1, Node l2) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+
+        if (l1.value < l2.value) {
+            l1.next = mergeLink2(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeLink2(l1, l2.next);
+            return l2;
+        }
     }
 
 }

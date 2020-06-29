@@ -38,8 +38,29 @@ public class BinarySearch {
     public static class Test {
         public static void main(String[] args) {
             int[] arr = {1, 3, 6, 7, 9, 12, 14, 17, 24, 37, 57};
-            int i = binarySearch(arr, 10);
-            System.out.println(i);
+            int i = binarySearch(arr, 12);
+            int i2 = search(arr, 12);
+            System.out.println(i + ":" + i2);
         }
+    }
+
+    public static int search(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length;
+        int mid;
+
+        while (left < right) {
+            mid = left + ((right - left) >> 1);
+            if (target > arr[mid]) {
+                left = mid + 1;
+            }
+            if (target < arr[mid]) {
+                right = mid - 1;
+            }
+            if (target == arr[mid]) {
+                return mid;
+            }
+        }
+        return -1;
     }
 }

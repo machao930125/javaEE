@@ -1,5 +1,7 @@
 package com.chao.datastructure;
 
+import java.util.Arrays;
+
 /**
  * 冒泡排序
  *
@@ -47,8 +49,24 @@ public class BubbleSort {
     public static class Test {
         public static void main(String[] args) {
             int[] arr = {1, 5, 8, 9, 3, 6, 7, 2, 8, 2, 4, 10, 12};
-            sort(arr);
-            System.out.println();
+//            sort(arr);
+            bubbleSort(arr);
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    public static void bubbleSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            boolean swap = true;
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    swap(arr, j, j + 1);
+                    swap = false;
+                }
+            }
+            if (swap) {
+                return;
+            }
         }
     }
 }

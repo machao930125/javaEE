@@ -26,7 +26,7 @@ public class TestTree {
 		BinTree.inOrder(q);
 		System.out.println();
 		BinTree.postOrder(q);
-
+		q.LayerOrder(q);
 
 	}
 }
