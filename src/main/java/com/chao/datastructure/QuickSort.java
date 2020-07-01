@@ -56,16 +56,16 @@ public class QuickSort {
         int left = start;
         int right = end;
         int mid = arr[left];
+
         while (left < right) {
-            if (left < right && mid <= arr[right]) {
+            while (left < right && mid <= arr[right]) {
                 right--;
             }
             arr[left] = arr[right];
-            if (left < right && mid > arr[left]) {
+            while (left < right && mid > arr[left]) {
                 left++;
             }
             arr[right] = arr[left];
-
         }
         arr[left] = mid;
         sort(arr, left + 1, right);

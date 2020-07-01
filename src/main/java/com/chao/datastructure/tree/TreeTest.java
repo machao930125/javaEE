@@ -11,6 +11,8 @@ import java.util.Queue;
  * 4、判断二叉树是否是搜索二叉树
  * 5、返回二叉搜索树的最大节点数
  * 6、查找二叉树某节点的后继节点
+ * 7、查找二叉树两个节点最大距离
+ * 8、查找二叉树两个节点的最低祖先
  */
 public class TreeTest {
 
@@ -33,9 +35,99 @@ public class TreeTest {
         System.out.println(isBinSearch(searchTree));
         System.out.println(maxCount(searchTree));
         System.out.println(findAftNode(searchTree.right).value);
-
+        System.out.println(findMaxDis(tree));
     }
 
+    static class TwoInfo {
+        private Tree node;
+        private boolean findO1;
+        private boolean findO2;
+
+        public TwoInfo(Tree node, boolean findO1, boolean findO2) {
+            this.node = node;
+            this.findO1 = findO1;
+            this.findO2 = findO2;
+        }
+    }
+
+    /**
+     * 查找两个节点的最低祖先
+     *
+     * @param head
+     * @param o1
+     * @param o2
+     * @return
+     */
+    public static Tree findNode(Tree head, Tree o1, Tree o2) {
+        return findTwo(head, o1, o2).node;
+    }
+
+    public static TwoInfo findTwo(Tree head, Tree o1, Tree o2) {
+        if (head == null) {
+            return new TwoInfo(null, false, false);
+        }
+
+        TwoInfo left = findTwo(head.left, o1, o2);
+        TwoInfo right = findTwo(head.right, o1, o2);
+
+        boolean findO1 = head == o1 || left.findO1 || right.findO1;
+        boolean findO2 = head == o2 || left.findO2 || right.findO2;
+
+        Tree ans = null;
+        if (left != null) {
+            ans = left.node;
+        }
+        if (right != null) {
+            ans = right.node;
+        }
+        if (ans == null) {
+            if (findO1 && findO2) {
+                ans = head;
+            }
+        }
+
+        return new TwoInfo(ans, findO1, findO2);
+    }
+
+    static class MaxInfo {
+        private int maxDistance;
+        private int height;
+
+        public MaxInfo(int maxDistance, int height) {
+            this.maxDistance = maxDistance;
+            this.height = height;
+        }
+    }
+
+    /**
+     * 查找两个节点的最大距离
+     *
+     * @param tree
+     * @return
+     */
+    public static int findMaxDis(Tree tree) {
+        return findMaxDistance(tree).maxDistance;
+    }
+
+    public static MaxInfo findMaxDistance(Tree tree) {
+        if (tree == null) {
+            return new MaxInfo(0, 0);
+        }
+        MaxInfo left = findMaxDistance(tree.left);
+        MaxInfo right = findMaxDistance(tree.right);
+
+        int height = left.height > right.height ? left.height + 1 : right.height + 1;
+        int maxDis = Math.max(Math.max(left.maxDistance, right.maxDistance),
+                left.height + right.height + 1);
+        return new MaxInfo(maxDis, height);
+    }
+
+    /**
+     * 查找后继节点
+     *
+     * @param node
+     * @return
+     */
     public static Tree findAftNode(Tree node) {
         if (node == null) {
             return null;
@@ -196,18 +288,6 @@ public class TreeTest {
 
     }
 
-//    public static Tree findAfterTree(Tree node){
-//        Tree temp = node;
-//        while (node != null){
-//            node = node.parent;
-//        }
-//
-//    }
-//    public static Tree findAfterTree(Tree node,Tree target){
-//        if (node.value == target.value){
-//            return
-//        }
-//    }
 
     /**
      * 获取二叉树的最大宽度

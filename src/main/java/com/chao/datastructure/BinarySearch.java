@@ -44,20 +44,19 @@ public class BinarySearch {
         }
     }
 
-    public static int search(int[] arr, int target) {
+    public static int search(int[] arr,int target){
         int left = 0;
-        int right = arr.length;
-        int mid;
-
-        while (left < right) {
+        int right = arr.length-1;
+        int mid ;
+        while (left < right){
             mid = left + ((right - left) >> 1);
-            if (target > arr[mid]) {
+            if (target > arr[mid]){
                 left = mid + 1;
             }
-            if (target < arr[mid]) {
+            if (target < arr[mid]){
                 right = mid - 1;
             }
-            if (target == arr[mid]) {
+            if (target == arr[mid]){
                 return mid;
             }
         }
