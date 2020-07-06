@@ -23,7 +23,6 @@ public class NodeTest {
     }
 
 
-
     public boolean findCircle(Node head) {
         Node fastPoint = head;
         Node slowPoint = head;
