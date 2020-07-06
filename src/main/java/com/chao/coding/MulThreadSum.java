@@ -1,4 +1,4 @@
-package com.chao;
+package com.chao.coding;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;

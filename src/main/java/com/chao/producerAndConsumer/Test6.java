@@ -1,5 +1,6 @@
 package com.chao.producerAndConsumer;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.util.concurrent.Semaphore;
  * @author machao
  */
 @Data
+@Builder
 public class Test6 implements Serializable {
 
     private int age;
