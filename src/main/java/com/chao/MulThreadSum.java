@@ -1,22 +1,65 @@
 package com.chao;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MulThreadSum {
+/**
+ * 多线程统计1-10000之间数字和
+ *
+ * @author chao
+ */
+public class MulThreadSum implements Runnable {
+    int count;
+    CountDownLatch latch;
+    AtomicInteger integer;
+    int[] arr;
+    int index;
+
+    public MulThreadSum(int count, CountDownLatch latch, AtomicInteger integer, int[] arr, int index) {
+        this.count = count;
+        this.latch = latch;
+        this.integer = integer;
+        this.arr = arr;
+        this.index = index;
+    }
+
     public static void main(String[] args) {
-        AtomicInteger integer = new AtomicInteger(10000);
-        int threadCount = 5;
+        AtomicInteger integer = new AtomicInteger(0);
+        int count = 10000;
+        CountDownLatch latch = new CountDownLatch(5);
+        int threadCount = 10;
         int[] arr = new int[threadCount];
-        for (int i = 0; i < 5; i++) {
-            new Thread(() -> {
-                while (integer.get() < 10000) {
-                    int i1 = integer.incrementAndGet();
-                    if (i1 > 10000){
-                        continue;
-                    }
-                    arr[i] += i1;
+        int sum = 0;
+
+        for (int i = 0; i < threadCount; i++) {
+            new Thread(new MulThreadSum(count, latch, integer, arr, i)).start();
+        }
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < threadCount; i++) {
+            sum += arr[i];
+        }
+        System.out.println(sum);
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (integer.get() < count) {
+                int result = integer.incrementAndGet();
+                if (result > count) {
+                    continue;
                 }
-            }).start();
+                arr[index] += result;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            latch.countDown();
         }
     }
 }
