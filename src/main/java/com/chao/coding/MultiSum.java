@@ -1,4 +1,4 @@
-package com.chao.datastructure.tree;
+package com.chao.coding;
 
 import java.util.concurrent.CountDownLatch;
 
