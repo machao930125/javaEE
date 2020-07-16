@@ -29,11 +29,11 @@ public class Test1 {
         @Override
         public void run() {
             for (int i = 0; i < 10; i++) {
-                try {
-                    Thread.sleep(3000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Thread.sleep(3000);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
                 synchronized (LOCK) {
                     while (count.equals(FULL)) {
                         try {
@@ -54,11 +54,11 @@ public class Test1 {
         @Override
         public void run() {
             for (int i = 0; i < 10; i++) {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Thread.sleep(3000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 synchronized (LOCK1) {
                     while (count == 0) {
                         try {
