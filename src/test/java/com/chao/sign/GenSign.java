@@ -11,33 +11,31 @@ import java.util.TreeMap;
 public class GenSign {
     // version_code=20200809&server_code=1&timestamp=1&r=IN&uId=900927b92cf5ac8d&count=10&l=en&group=1
     public static void main(String[] args) {
-        String time = System.currentTimeMillis() + "";
+        genCdnCallback();
+    }
+
+    private static void genCdnCallback(){
         TreeMap<String, String> treeMap = new TreeMap<>();
-        treeMap.put("r", "IN");
-        treeMap.put("l", "IN");
-        treeMap.put("topicKey", "fun");
-        treeMap.put("docId", "22222222");
-        treeMap.put("uuid", "222222222");
-        treeMap.put("timestamp", time);
-        treeMap.put("version_code", "20190729");
-        treeMap.put("server_code", "100");
-        treeMap.put("userId", "25da2383a78ef2a1");
-        treeMap.put("group", "1");
-        treeMap.put("count", "10");
-        treeMap.put("passport", "boss");
+        treeMap.put("url", "0000.0p;222.3p");
+        treeMap.put("bitRate", "127;23");
+        treeMap.put("videoId", "03091813d4c5a2f0cf95e37ef8b6bd01");
         String sign = getSign(treeMap);
         System.out.println(sign);
     }
+
+
     private static String getSign(TreeMap<String, String> params) {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
             sb.append(param.getKey()).append("=").append(param.getValue()).append("&");
         }
 
-        sb.append("key=").append("3d5f1ffeadf58eb64ef57aef7e53a31e");
+        StringBuilder builder = new StringBuilder(sb);
+
+        builder.append("key=").append("3d5f1ffeadf58eb64ef57aef7e53a31e");
         String sign = null;
         try {
-            sign = hexMD5(sb.toString());
+            sign = hexMD5(builder.toString());
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }

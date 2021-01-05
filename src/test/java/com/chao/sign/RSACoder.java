@@ -15,10 +15,7 @@ public class RSACoder {
 
     public static final String KEY_ALGORITHM = "RSA";
 
-    private static final String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+lV4asFZKYr6It1WWb7sLI6hG\n" +
-            "+ulRqi6ggPfrCkcwMC/lDkK2c1sMt1WQly2Q546tfEIDCCg/lYBFuegcz5GWkD6G\n" +
-            "ee3pxteOEmgI4Ry0GtnF6tWcKZHu4zNMF0umdBfQ7RWpZ7CBmc6tiydV5KCfH/Ri\n" +
-            "etPsJlREhCBsBIHa+wIDAQAB";
+    private static final String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+lV4asFZKYr6It1WWb7sLI6hG+ulRqi6ggPfrCkcwMC/lDkK2c1sMt1WQly2Q546tfEIDCCg/lYBFuegcz5GWkD6Gee3pxteOEmgI4Ry0GtnF6tWcKZHu4zNMF0umdBfQ7RWpZ7CBmc6tiydV5KCfH/RietPsJlREhCBsBIHa+wIDAQAB";
     private static final String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL6VXhqwVkpivoi3\n" +
             "VZZvuwsjqEb66VGqLqCA9+sKRzAwL+UOQrZzWwy3VZCXLZDnjq18QgMIKD+VgEW5\n" +
             "6BzPkZaQPoZ57enG144SaAjhHLQa2cXq1Zwpke7jM0wXS6Z0F9DtFalnsIGZzq2L\n" +
@@ -43,16 +40,16 @@ public class RSACoder {
         String paramStr = gson.toJson(param);
 
 
-//        String encryptAndBase64ByPublicKey = RSACoder.encryptAndBase64ByPublicKey(paramStr, publicKey);
-//
-//        System.out.println(encryptAndBase64ByPublicKey);
-//
-//        String de = RSACoder.decryptBase64AndRSAByPrivateKey(encryptAndBase64ByPublicKey, privateKey);
-//        System.out.println(de);
+        String encryptAndBase64ByPublicKey = RSACoder.encryptAndBase64ByPublicKey(paramStr, publicKey);
 
-        String content = "FFNCba+xT/EmqU9jBVv6qpjBuIOqdJvzsEypYaSFM55DTe6Qqzr92oDzUltUkBcF3/nArSCSq+2RbEqPd8Eljhx8HJYEwIrc+ZvBcbfw7EpIeZCdeH59cfQj2gDDLUQPlise8sqiyFNBB7OOw9mz1OhfBK0lUSi/dr73WSgOKxE=";
-        String s = RSACoder.decryptBase64AndRSAByPrivateKey(content, privateKey);
-        System.out.println(s);
+        System.out.println(encryptAndBase64ByPublicKey);
+
+        String de = RSACoder.decryptBase64AndRSAByPrivateKey(encryptAndBase64ByPublicKey, privateKey);
+        System.out.println(de);
+
+//        String content = "FFNCba+xT/EmqU9jBVv6qpjBuIOqdJvzsEypYaSFM55DTe6Qqzr92oDzUltUkBcF3/nArSCSq+2RbEqPd8Eljhx8HJYEwIrc+ZvBcbfw7EpIeZCdeH59cfQj2gDDLUQPlise8sqiyFNBB7OOw9mz1OhfBK0lUSi/dr73WSgOKxE=";
+//        String s = RSACoder.decryptBase64AndRSAByPrivateKey(content, privateKey);
+//        System.out.println(s);
     }
 
 
